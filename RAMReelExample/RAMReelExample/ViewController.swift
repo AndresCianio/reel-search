@@ -24,9 +24,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         
         dataSource = SimplePrefixQueryDataSource(data)
         
-        ramReel = RAMReel(frame: self.view.bounds, dataSource: dataSource, placeholder: "Start by typing…") {
-                print("Plain:", $0)
-            }
+        ramReel = RAMReel(frame: self.view.bounds, dataSource: dataSource, placeholder: "Start by typing...") {
+            print("Plain:", $0)
+        }
         
         ramReel.hooks.append {
             let r = Array($0.characters.reversed())

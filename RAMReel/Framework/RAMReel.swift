@@ -166,7 +166,6 @@ open class RAMReel
         self.textField.font = theme.font
         self.textField.textColor = theme.textColor
         (self.textField as UITextField).tintColor = theme.textColor
-        self.textField.keyboardAppearance = UIKeyboardAppearance.dark
         self.gradientView.listBackgroundColor = theme.listBackgroundColor
         
         self.view.layer.mask = self.gradientView.layer
@@ -267,19 +266,6 @@ open class RAMReel
         let controlEvents = UIControlEvents.editingDidEndOnExit
         returnTarget.beTargetFor(textField, controlEvents: controlEvents) { textField -> () in
             if
-                let text = textField.text,
-                let item = DataSource.ResultType.parse(text)
-            {
-                for hook in self.hooks {
-                    hook(item)
-                }
-                self.wrapper.data = []
-            }
-        }
-        
-        gestureTarget.recognizeFor(collectionView, type: GestureTarget.GestureType.tap) { [weak self] _ in
-            if
-                let `self` = self,
                 let selectedItem = self.wrapper.selectedItem
             {
                 self.textField.becomeFirstResponder()
